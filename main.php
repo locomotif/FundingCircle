@@ -50,13 +50,8 @@ if (is_numeric($opt)) {
         $primeMultiplication = new PM($opt);
         $primeMultiplication->paint();
     } else {
-        $start = microtime(true);
-        print("$start\n");
         $primeMultiplication = new PM($opt);
         $primeMultiplication->dump_primes();
-        $end = microtime(true);
-        print("$end\n");
-        print(($end - $start) . "\n");
     }
 } else if (strtolower($opt) == "test") {
 
