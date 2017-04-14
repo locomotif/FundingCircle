@@ -18,13 +18,18 @@ require_once __DIR__ . '/autoload.php';
  * and column of the table should have the 10 primes, with each cell containing
  * the product of the primes for the corresponding row and column.
  *
- * Input: N integer, currently no constraints.
+ * Input: currently no constraints or inputs are required.
+ * - I added a few options during development to do TDD, and other outputs
+ *
+ * Usage:
+ * main.php [test | N [notable]]
  *
  * Output: Multiplication Table of the primes
+ *
  */
 
 /**
- * Provide a mechanism for use to be able to provide any number N, otherwise
+ * Provide a mechanism for user to be able to provide any number N, otherwise
  * default to 10
  */
 $opt = 10;
@@ -39,13 +44,13 @@ if (!empty($argv) && count($argv) > 1) {
  * to avoid dependencies, such as PHPUnit, I coded a Test Suite just for this
  * project.
  *
- * To trigger the test script, simply provide any argument to the commandline
- * execution of this script that is not a number.
+ * To trigger the test script, simply provide to the "test" argument to
+ * execution test suite.
  */
 if (is_numeric($opt)) {
     $start = microtime(true);
     if ($opt < 2 || $opt > 100000) {
-        print("N is limited to 2 <= N <= 10^5 - For N eq to the upper limit took ~360s to execute\n");
+        print("N is limited to 2 <= N <= 10^5 - For N eq to the upper limit took ~50s to execute\n");
     } else if (! $primes_only) {
         $primeMultiplication = new PM($opt);
         $primeMultiplication->paint();

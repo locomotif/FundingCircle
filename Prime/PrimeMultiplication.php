@@ -8,16 +8,15 @@ namespace Prime;
 
 class PrimeMultiplication extends Prime 
 {
+    /* @var <number> $length and height of multiplication table */
     private $length = 0;
 
-    /*
-     * @var <array> $primes collection of N primes
-     */
+    /* @var <array> $primes collection of N primes */
     private $primes = array();
 
     public function __construct($n) 
     {
-        // increment for display of primes
+        /* increment for display of primes */
         $this->length = $n + 1;
         $this->primes = $this->get_primes($n);
     }
@@ -55,7 +54,7 @@ class PrimeMultiplication extends Prime
             $this->paint_border($padding);
             print("\n");
             for($j = 0; $j < $this->length; $j++) {
-                // base case: blank will be converted to zero
+                /* base case: blank will be converted to zero */
                 if ($j == 0 && $i == 0) {
                     print(sprintf("%' " . $padding . "s", ""));
                 } else {

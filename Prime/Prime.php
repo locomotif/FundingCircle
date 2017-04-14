@@ -54,16 +54,15 @@ class Prime {
     /**
      * Verifies if number is a prime.
      *
-     * @param $number <integer/float>
+     * @param $number <integer>
      * @return boolean
      */
     final public function is_prime($number) 
     {
-        /* cast to float to ensure we are working with numbers */
+        /* cast to ensure we are working with numbers */
         $number = (int) $number;
 
-
-        /* base cases - order matters - I want o work with numbers greater than 3 */
+        /* base cases - order matters - working with numbers greater than 3 */
         if ($number < 2) return false;
         if ($number === 2 || $number === 3) return true;
         if ($number % 2 === 0) return false;
@@ -87,22 +86,22 @@ class Prime {
      *
      * The following doesn't follow the DRY principal. However since I have it
      * public for testing and stressing it, I decided to also add the base
-     * cases
+     * cases. I would probably have this function as a private method only executed by `Prime::is_prime`
      *
      * @param <int> $k used to determine the accuracy of the test 1/(2^k)
      * @return <boolean> 
      */
     final public function rabin_miller_primality_test($number, $k = 100)
     {
-        /* cast to float to ensure we are working with numbers */
-        $number = (float) $number;
+        /* cast to ensure we are working with numbers */
+        $number = (int) $number;
 
-        /* base cases - order matters - I want o work with numbers greater than 3 */
+        /* base cases - order matters - working with numbers greater than 3 */
         if ($number < 2) return false;
         if ($number === 2 || $number === 3) return true;
         if ($number % 2 === 0) return false;
 
-        /* book keeping to not investigate already investigated base */
+        /* array for memoization */
         $verified = [];
 
         list($t, $u) = $this->rabin_miller_vars($number - 1);
@@ -110,7 +109,7 @@ class Prime {
 
         do {
             if (count($verified) == $number - 2) {
-                // break do loop
+                /* break do loop */
                 $k = 0;
             } else {
                 /* get a new unique base */
@@ -118,7 +117,7 @@ class Prime {
                     $base = Math::random(2, $number - 1);
                 }while(in_array($base, $verified));
 
-                /* memoize the base and get another unique base*/
+                /* memoize the base and get another unique base */
                 $verified[] = $base;
                 $witness = Math::mod_pow($base, $u, $number);
                 if ($witness != 0 && $witness !== 1  && $witness !== $number - 1) {
@@ -126,16 +125,18 @@ class Prime {
                         $prev_witness = $witness;
                         $witness = Math::mod_pow($witness, 2, $number);
                         if ($witness == 1) {
+
                             /* Determine if Non-trivial square root */
                             if ($prev_witness != 1 && $prev_witness != $number - 1) {
-                                // witnessed composite
+                                /* composite */
                                 return false;
                             } else {
-                                // break an try again
+                                /* loop again for accuracy */
                                 $i = $t;
                             }
                         }
                         if ($i == $t && $witness != 1) {
+                            /* composite */
                             return false;
                         }
                     }
@@ -143,7 +144,7 @@ class Prime {
             }
         } while(--$k > 0);
 
-        // most likely a prime
+        /* most likely a prime */
         return true;
     }
 
@@ -156,7 +157,7 @@ class Prime {
      */
     final public function rabin_miller_vars($number)
     {
-        // number must be even
+        /* number must be even */
         if ($number % 2 !== 0) {
             throw new \Exception($number . " is not even");
         }
