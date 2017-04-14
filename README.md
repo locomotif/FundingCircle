@@ -23,7 +23,7 @@ Generate a multiplication table of the first 10 prime numbers.  The program must
 # php main.php // executed default behavior N = 10
 ```
 #### Example Output
-![Prime Multiplication Table](https://github.com/locomotif/FundingCircle/images/PrimeMultiplicationTable.png)
+![Prime Multiplication Table](/images/PrimeMultiplicationTable.png)
 
 ### Execute for target `N`
 ***constraint***: `2 <= N <= 100000`
@@ -32,7 +32,7 @@ Generate a multiplication table of the first 10 prime numbers.  The program must
 # php main.php 1000
 ```
 Executing the upper bound can take approximately 53s, with k = 100.
-![Prime Multiplication Table](https://github.com/locomotif/FundingCircle/images/MillerRabin_Test_accuracy_factor.png)
+![Prime Multiplication Table](/images/MillerRabin_Test_accuracy_factor.png)
 
 ### Output Primes only for `N`
 
