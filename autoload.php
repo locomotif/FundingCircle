@@ -1,6 +1,4 @@
 <?php
-define("OK", true, true);
-
 /**
  * Basic autoloader for porject Prime
  */
