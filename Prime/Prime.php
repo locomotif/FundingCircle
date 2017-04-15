@@ -134,8 +134,7 @@ class Prime {
                                 /* loop again for accuracy */
                                 $i = $t;
                             }
-                        }
-                        if ($i == $t && $witness != 1) {
+                        } else if ($i == $t && $witness != 1) {
                             /* composite */
                             return false;
                         }
